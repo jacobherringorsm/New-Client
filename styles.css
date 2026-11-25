@@ -198,10 +198,75 @@ h1, h2, p { margin: 0; }
 .about-card p { max-width: 650px; }
 .toast { position: fixed; right: 24px; bottom: 23px; z-index: 5; max-width: min(390px, calc(100vw - 32px)); padding: 12px 16px; border: 1px solid rgba(var(--accent-rgb), .38); border-radius: 8px; background: #141f2e; box-shadow: 0 10px 36px rgba(0,0,0,.35); color: var(--text); font-size: 11px; }
 .toast[hidden] { display: none; }
+.button-secondary { border-color: var(--line-bright); background: rgba(255,255,255,.025); color: var(--muted); }
+.button-secondary:hover { border-color: rgba(var(--accent-rgb), .35); color: var(--text); }
+.button[hidden] { display: none; }
 
 :root[data-compact="true"] .main { padding-right: 34px; padding-left: 34px; }
 :root[data-compact="true"] .hero { min-height: 285px; }
 :root[data-reduced-motion="true"] *, :root[data-reduced-motion="true"] *::before, :root[data-reduced-motion="true"] *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+
+.game-page { overflow: hidden; background: #05070b; }
+.game-shell { position: fixed; inset: 0; overflow: hidden; background: #05070b; }
+.game-frame { position: absolute; inset: 0; display: block; width: 100%; height: 100%; border: 0; background: #000; }
+.game-frame[hidden] { display: none; }
+.game-loading { position: absolute; top: 50%; left: 50%; width: min(420px, calc(100vw - 32px)); transform: translate(-50%, -50%); color: var(--muted); font-size: 13px; line-height: 1.7; text-align: center; }
+.game-loading a { color: var(--accent); }
+.game-badge { position: absolute; top: 16px; left: 17px; z-index: 5; padding: 7px 10px; border: 1px solid rgba(var(--accent-rgb), .38); border-radius: 7px; background: rgba(7, 12, 20, .84); box-shadow: 0 0 18px rgba(var(--accent-rgb), .08); color: var(--accent); font-size: 9px; font-weight: 800; letter-spacing: .17em; pointer-events: none; }
+.game-badge span { margin-left: 6px; color: var(--muted); font-size: 8px; font-weight: 600; }
+.game-badge[hidden] { display: none; }
+.gui-trigger { position: absolute; top: 15px; right: 16px; z-index: 6; display: flex; min-height: 34px; align-items: center; gap: 10px; padding: 0 10px; border: 1px solid rgba(var(--accent-rgb), .35); border-radius: 7px; background: rgba(7, 12, 20, .87); color: var(--text); font-size: 9px; font-weight: 750; letter-spacing: .1em; cursor: pointer; backdrop-filter: blur(8px); }
+.gui-trigger:hover { border-color: var(--accent); color: var(--accent); }
+.gui-trigger kbd { padding: 4px 5px; border: 1px solid var(--line-bright); border-radius: 4px; color: var(--muted); font: inherit; font-size: 7px; letter-spacing: .06em; }
+.clickgui-overlay { position: absolute; inset: 0; z-index: 10; display: grid; place-items: center; padding: 24px; background: rgba(4, 7, 13, .62); backdrop-filter: blur(5px); }
+.clickgui-overlay[hidden] { display: none; }
+.clickgui-window { display: grid; width: min(880px, calc(100vw - 32px)); min-height: 500px; max-height: min(620px, calc(100vh - 32px)); grid-template-columns: 190px minmax(0, 1fr); overflow: hidden; border: 1px solid rgba(var(--accent-rgb), .25); border-radius: 13px; background: #0c121e; box-shadow: 0 25px 100px rgba(0, 0, 0, .62), 0 0 35px rgba(var(--accent-rgb), .07); }
+.clickgui-sidebar { display: flex; flex-direction: column; padding: 21px 13px 15px; border-right: 1px solid var(--line); background: linear-gradient(180deg, #101a28, #0b111c); }
+.gui-brand { display: flex; align-items: center; gap: 10px; padding: 0 4px; color: var(--text); font-size: 11px; font-weight: 800; letter-spacing: .15em; }
+.gui-brand small { display: block; margin-top: 3px; color: var(--muted); font-size: 8px; font-weight: 600; letter-spacing: .16em; }
+.gui-brand-icon { display: grid; width: 34px; height: 34px; place-items: center; border: 1px solid rgba(var(--accent-rgb), .45); border-radius: 9px; background: var(--accent-soft); color: var(--accent); font-size: 16px; }
+.gui-nav-label { margin: 35px 9px 10px; color: var(--dim); font-size: 8px; font-weight: 700; letter-spacing: .18em; }
+.gui-nav { display: grid; gap: 5px; }
+.gui-nav-item { display: flex; min-height: 37px; align-items: center; gap: 10px; padding: 0 10px; border: 1px solid transparent; border-radius: 6px; background: transparent; color: var(--muted); font-size: 10px; text-align: left; cursor: pointer; }
+.gui-nav-item > span { width: 15px; color: var(--dim); font-size: 14px; text-align: center; }
+.gui-nav-item:hover, .gui-nav-item.is-active { border-color: rgba(var(--accent-rgb), .17); background: var(--accent-soft); color: var(--accent); }
+.gui-nav-item.is-active > span { color: var(--accent); }
+.gui-sidebar-note { display: flex; align-items: center; gap: 8px; margin-top: auto; padding: 10px 6px 1px; color: var(--muted); font-size: 8px; }
+.gui-sidebar-note .status-dot { width: 6px; height: 6px; }
+.clickgui-content { display: flex; min-width: 0; flex-direction: column; padding: 25px 27px 15px; }
+.gui-header { display: flex; align-items: flex-start; justify-content: space-between; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+.gui-header h1 { margin-top: 9px; font-size: 23px; font-weight: 680; letter-spacing: -.04em; }
+.gui-close { display: grid; width: 30px; height: 30px; place-items: center; border: 1px solid var(--line); border-radius: 6px; background: rgba(255,255,255,.025); color: var(--muted); font-size: 20px; line-height: 1; cursor: pointer; }
+.gui-close:hover { border-color: rgba(var(--accent-rgb), .4); color: var(--accent); }
+.gui-screen { flex: 1; padding-top: 22px; }
+.gui-screen[hidden] { display: none; }
+.gui-section-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 15px; }
+.gui-section-heading h2 { font-size: 13px; font-weight: 650; }
+.gui-section-heading p { margin-top: 6px; color: var(--muted); font-size: 9px; }
+.gui-module-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 19px; }
+.gui-module { display: grid; min-height: 80px; grid-template-columns: 29px minmax(0, 1fr) 34px; align-items: center; gap: 9px; padding: 11px; border: 1px solid var(--line); border-radius: 8px; background: rgba(255,255,255,.018); cursor: pointer; }
+.gui-module:hover { border-color: rgba(var(--accent-rgb), .27); background: rgba(var(--accent-rgb), .035); }
+.gui-module-icon { display: grid; width: 29px; height: 29px; place-items: center; border-radius: 7px; background: var(--accent-soft); color: var(--accent); font-size: 12px; font-weight: 700; }
+.gui-module-copy { display: grid; gap: 5px; }
+.gui-module-copy strong, .keybind-row strong { color: var(--text); font-size: 9px; font-weight: 650; }
+.gui-module-copy small, .keybind-row small { color: var(--muted); font-size: 8px; line-height: 1.45; }
+.gui-module .switch { justify-self: end; }
+.keybind-row { display: flex; min-height: 61px; align-items: center; justify-content: space-between; gap: 16px; margin-top: 15px; padding: 0 11px; border: 1px solid var(--line); border-radius: 8px; background: rgba(255,255,255,.012); }
+.keybind-row > span { display: grid; gap: 5px; }
+.keybind-button { min-width: 85px; min-height: 27px; padding: 0 8px; border: 1px solid rgba(var(--accent-rgb), .27); border-radius: 5px; background: var(--accent-soft); color: var(--accent); font-size: 8px; font-weight: 700; letter-spacing: .07em; cursor: pointer; }
+.keybind-button:hover { border-color: var(--accent); }
+.gui-accent-options { display: grid; gap: 9px; margin-top: 18px; }
+.gui-accent { display: flex; min-height: 43px; align-items: center; gap: 10px; padding: 0 12px; border: 1px solid var(--line); border-radius: 7px; background: rgba(255,255,255,.015); color: var(--muted); font-size: 9px; text-align: left; cursor: pointer; }
+.gui-accent:hover, .gui-accent.is-selected { border-color: rgba(var(--accent-rgb), .38); background: var(--accent-soft); color: var(--text); }
+.gui-accent .swatch { width: 10px; height: 10px; }
+.gui-accent .choice-check { display: none; margin-left: auto; color: var(--accent); font-size: 11px; }
+.gui-accent.is-selected .choice-check { display: inline; }
+.gui-footer { display: flex; align-items: center; gap: 5px; margin-top: auto; padding-top: 14px; border-top: 1px solid var(--line); color: var(--dim); font-size: 8px; }
+.gui-footer > span:first-child { color: var(--accent); }
+.footer-divider { padding: 0 3px; }
+.game-toast { position: fixed; right: 16px; bottom: 16px; z-index: 15; max-width: min(360px, calc(100vw - 32px)); padding: 11px 14px; border: 1px solid rgba(var(--accent-rgb), .35); border-radius: 7px; background: #121b29; box-shadow: 0 12px 34px rgba(0,0,0,.4); color: var(--text); font-size: 10px; }
+.game-toast[hidden] { display: none; }
+:root[data-compact-gui="true"] .clickgui-window { width: min(720px, calc(100vw - 32px)); min-height: 420px; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
@@ -244,4 +309,24 @@ h1, h2, p { margin: 0; }
   .preview-card { align-items: flex-start; flex-direction: column; }
   .setting-row { gap: 8px; }
   .setting-copy small { max-width: 225px; line-height: 1.5; }
+}
+
+@media (max-width: 650px) {
+  .clickgui-overlay { padding: 9px; }
+  .clickgui-window { width: calc(100vw - 18px); min-height: min(520px, calc(100vh - 18px)); max-height: calc(100vh - 18px); grid-template-columns: 57px minmax(0, 1fr); }
+  .clickgui-sidebar { padding: 14px 6px 10px; align-items: center; }
+  .gui-brand { flex-direction: column; gap: 5px; padding: 0; font-size: 7px; }
+  .gui-brand small { font-size: 6px; }
+  .gui-brand-icon { width: 30px; height: 30px; }
+  .gui-nav-label, .gui-sidebar-note { display: none; }
+  .gui-nav { width: 100%; margin-top: 25px; }
+  .gui-nav-item { justify-content: center; padding: 0; font-size: 0; }
+  .gui-nav-item > span { font-size: 17px; }
+  .clickgui-content { padding: 18px 13px 11px; }
+  .gui-header { padding-bottom: 15px; }
+  .gui-header h1 { font-size: 20px; }
+  .gui-module-grid { grid-template-columns: 1fr; gap: 7px; margin-top: 13px; }
+  .gui-module { min-height: 65px; padding: 8px; }
+  .keybind-row { margin-top: 9px; padding: 0 8px; }
+  .gui-footer { flex-wrap: wrap; font-size: 7px; }
 }

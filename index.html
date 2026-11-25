@@ -6,6 +6,7 @@
     <meta name="theme-color" content="#090d16">
     <title>Neon Client UI</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="storage.js" defer></script>
     <script src="app.js" defer></script>
   </head>
   <body>
@@ -70,12 +71,14 @@
                 <button class="button button-primary" id="choose-client" type="button">
                   <span aria-hidden="true">＋</span> Choose client file
                 </button>
-                <a class="button button-primary launch-link" id="launch-client" href="#" target="_blank" rel="noopener noreferrer" aria-disabled="true" tabindex="-1" hidden>
+                <a class="button button-primary launch-link" id="launch-client" href="game.html" target="_blank" rel="noopener noreferrer" aria-disabled="true" tabindex="-1" hidden>
                   <span aria-hidden="true">▶</span> Launch 26.2 client
                 </a>
+                <button class="button button-secondary" id="remove-client" type="button" hidden>Remove saved client</button>
                 <a class="download-link" href="https://eaglercraft.com/downloads" target="_blank" rel="noopener noreferrer">Get the client from Eaglercraft downloads ↗</a>
               </div>
               <p class="selected-file" id="selected-file" role="status" aria-live="polite">Choose a standalone 26.2 HTML build or a ZIP containing one. Files stay on your device; only open builds you trust.</p>
+              <p class="selected-file">Install once per browser. The client stays in this browser's local storage and is never uploaded.</p>
             </div>
             <div class="hero-art" aria-hidden="true">
               <div class="orbit orbit-one"></div>

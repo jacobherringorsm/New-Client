@@ -8,9 +8,9 @@ const fpsPreview = document.querySelector("#fps-preview");
 const clientFileInput = document.querySelector("#client-file");
 const chooseClientButton = document.querySelector("#choose-client");
 const launchClientLink = document.querySelector("#launch-client");
+const removeClientButton = document.querySelector("#remove-client");
 const selectedFileStatus = document.querySelector("#selected-file");
 let toastTimer;
-let clientObjectUrl;
 const MAX_ARCHIVE_BYTES = 100 * 1024 * 1024;
 const MAX_CLIENT_BYTES = 128 * 1024 * 1024;
 
@@ -242,16 +242,33 @@ for (const button of document.querySelectorAll("[data-notice]")) {
 
 chooseClientButton.addEventListener("click", () => clientFileInput.click());
 
+function markClientInstalled(name, message) {
+  launchClientLink.hidden = false;
+  launchClientLink.setAttribute("aria-disabled", "false");
+  launchClientLink.removeAttribute("tabindex");
+  removeClientButton.hidden = false;
+  chooseClientButton.textContent = "Choose a different file";
+  selectedFileStatus.textContent = message;
+}
+
+async function restoreInstalledClient() {
+  try {
+    const client = await NeonClientStorage.getClient();
+    if (client?.blob instanceof Blob) {
+      markClientInstalled(
+        client.name,
+        `${client.name} is installed in this browser. You can launch it without selecting the file again.`,
+      );
+    }
+  } catch (error) {
+    console.error("Unable to read the saved client.", error);
+    selectedFileStatus.textContent = error instanceof Error ? error.message : "Unable to read the saved client.";
+  }
+}
+
 clientFileInput.addEventListener("change", async () => {
   const [file] = clientFileInput.files ?? [];
   if (!file) return;
-
-  if (clientObjectUrl) URL.revokeObjectURL(clientObjectUrl);
-  clientObjectUrl = undefined;
-  launchClientLink.removeAttribute("href");
-  launchClientLink.hidden = true;
-  launchClientLink.setAttribute("aria-disabled", "true");
-  launchClientLink.setAttribute("tabindex", "-1");
 
   if (!/\.(?:html?|zip)$/i.test(file.name)) {
     clientFileInput.value = "";
@@ -263,14 +280,19 @@ clientFileInput.addEventListener("change", async () => {
   chooseClientButton.disabled = true;
   try {
     const clientBlob = /\.zip$/i.test(file.name) ? await extractClientHtml(file) : file;
-    if (clientObjectUrl) URL.revokeObjectURL(clientObjectUrl);
-    clientObjectUrl = URL.createObjectURL(clientBlob);
-    launchClientLink.href = clientObjectUrl;
-    launchClientLink.hidden = false;
-    launchClientLink.setAttribute("aria-disabled", "false");
-    launchClientLink.removeAttribute("tabindex");
-    chooseClientButton.textContent = "Choose a different file";
-    selectedFileStatus.textContent = `${file.name} is ready. Launch it in a new tab.`;
+    await NeonClientStorage.saveClient({ name: file.name, blob: clientBlob, installedAt: Date.now() });
+    let persistenceGranted = false;
+    try {
+      persistenceGranted = await NeonClientStorage.requestPersistence();
+    } catch (error) {
+      console.warn("Persistent browser storage was not granted.", error);
+    }
+    markClientInstalled(
+      file.name,
+      persistenceGranted
+        ? `${file.name} is installed on this device. You can launch it without selecting the file again.`
+        : `${file.name} is saved in this browser, but browser storage may be cleared automatically.`,
+    );
   } catch (error) {
     console.error("Unable to load the selected client file.", error);
     selectedFileStatus.textContent = error instanceof Error ? error.message : "Unable to load the selected client file.";
@@ -279,16 +301,31 @@ clientFileInput.addEventListener("change", async () => {
   }
 });
 
+removeClientButton.addEventListener("click", async () => {
+  removeClientButton.disabled = true;
+  try {
+    await NeonClientStorage.removeClient();
+    launchClientLink.hidden = true;
+    launchClientLink.setAttribute("aria-disabled", "true");
+    launchClientLink.setAttribute("tabindex", "-1");
+    removeClientButton.hidden = true;
+    chooseClientButton.textContent = "Choose client file";
+    selectedFileStatus.textContent = "Saved client removed from this browser.";
+  } catch (error) {
+    console.error("Unable to remove the saved client.", error);
+    selectedFileStatus.textContent = error instanceof Error ? error.message : "Unable to remove the saved client.";
+  } finally {
+    removeClientButton.disabled = false;
+  }
+});
+
 launchClientLink.addEventListener("click", (event) => {
   if (launchClientLink.getAttribute("aria-disabled") === "true") {
     event.preventDefault();
     return;
   }
-  showNotice("The selected client is opening in a separate tab.");
-});
-
-window.addEventListener("pagehide", () => {
-  if (clientObjectUrl) URL.revokeObjectURL(clientObjectUrl);
+  showNotice("Opening the saved client and ClickGUI in a new tab.");
 });
 
 showPanel("home");
+restoreInstalledClient();

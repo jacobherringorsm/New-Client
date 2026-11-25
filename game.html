@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#090d16">
+    <title>Neon Client</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="storage.js" defer></script>
+    <script src="game.js" defer></script>
+  </head>
+  <body class="game-page">
+    <main class="game-shell">
+      <p class="game-loading" id="game-loading" role="status">Loading your saved client…</p>
+      <iframe
+        class="game-frame"
+        id="client-frame"
+        title="Eaglercraft 26.2"
+        allow="autoplay; clipboard-read; clipboard-write; fullscreen; pointer-lock"
+        allowfullscreen
+        hidden
+      ></iframe>
+
+      <div class="game-badge" id="game-badge" aria-hidden="true">NEON <span>26.2</span></div>
+      <button class="gui-trigger" id="gui-trigger" type="button" aria-controls="clickgui" aria-expanded="false">
+        CLICKGUI <kbd id="keybind-label">RIGHT SHIFT</kbd>
+      </button>
+
+      <div class="clickgui-overlay" id="clickgui" hidden>
+        <section class="clickgui-window" role="dialog" aria-modal="true" aria-labelledby="gui-title">
+          <aside class="clickgui-sidebar">
+            <div class="gui-brand"><span class="gui-brand-icon">N</span><span>NEON<small>CLICKGUI</small></span></div>
+            <div class="gui-nav-label">CLIENT</div>
+            <nav class="gui-nav" aria-label="ClickGUI sections">
+              <button class="gui-nav-item is-active" type="button" data-screen="interface" aria-current="page"><span>◫</span> Interface</button>
+              <button class="gui-nav-item" type="button" data-screen="appearance"><span>◈</span> Appearance</button>
+            </nav>
+            <div class="gui-sidebar-note"><span class="status-dot"></span> Local client loaded</div>
+          </aside>
+
+          <div class="clickgui-content">
+            <header class="gui-header">
+              <div>
+                <div class="eyebrow"><span class="eyebrow-line"></span> PERSONAL CLIENT</div>
+                <h1 id="gui-title">Interface</h1>
+              </div>
+              <button class="gui-close" id="close-gui" type="button" aria-label="Close ClickGUI">×</button>
+            </header>
+
+            <section class="gui-screen is-active" data-screen-panel="interface" aria-labelledby="interface-title">
+              <div class="gui-section-heading">
+                <div><h2 id="interface-title">Interface modules</h2><p>Visual controls for the client overlay.</p></div>
+                <span class="tag">LOCAL</span>
+              </div>
+              <div class="gui-module-grid">
+                <label class="gui-module">
+                  <span class="gui-module-icon">N</span>
+                  <span class="gui-module-copy"><strong>Client badge</strong><small>Show the Neon mark over the game.</small></span>
+                  <input class="switch-input" type="checkbox" data-pref="showBadge" aria-label="Client badge">
+                  <span class="switch" aria-hidden="true"></span>
+                </label>
+                <label class="gui-module">
+                  <span class="gui-module-icon">▱</span>
+                  <span class="gui-module-copy"><strong>Compact ClickGUI</strong><small>Use a smaller settings panel.</small></span>
+                  <input class="switch-input" type="checkbox" data-pref="compactGui" aria-label="Compact ClickGUI">
+                  <span class="switch" aria-hidden="true"></span>
+                </label>
+                <label class="gui-module">
+                  <span class="gui-module-icon">◌</span>
+                  <span class="gui-module-copy"><strong>Reduce motion</strong><small>Minimize overlay transitions.</small></span>
+                  <input class="switch-input" type="checkbox" data-pref="reducedMotion" aria-label="Reduce motion">
+                  <span class="switch" aria-hidden="true"></span>
+                </label>
+              </div>
+              <div class="keybind-row">
+                <span><strong>Open ClickGUI</strong><small>Change the key that opens this menu.</small></span>
+                <button class="keybind-button" id="keybind-button" type="button">RIGHT SHIFT</button>
+              </div>
+            </section>
+
+            <section class="gui-screen" data-screen-panel="appearance" aria-labelledby="appearance-title" hidden>
+              <div class="gui-section-heading">
+                <div><h2 id="appearance-title">Accent color</h2><p>Choose the highlight color for your overlay.</p></div>
+                <span class="tag">THEME</span>
+              </div>
+              <div class="gui-accent-options" role="group" aria-label="Accent color">
+                <button class="gui-accent is-selected" type="button" data-accent="cyan" aria-pressed="true"><span class="swatch swatch-cyan"></span>Cyan<span class="choice-check">✓</span></button>
+                <button class="gui-accent" type="button" data-accent="violet" aria-pressed="false"><span class="swatch swatch-violet"></span>Violet<span class="choice-check">✓</span></button>
+                <button class="gui-accent" type="button" data-accent="amber" aria-pressed="false"><span class="swatch swatch-amber"></span>Amber<span class="choice-check">✓</span></button>
+              </div>
+            </section>
+
+            <footer class="gui-footer"><span id="footer-keybind">Right Shift</span> toggles the ClickGUI <span class="footer-divider">·</span> Settings save in this browser</footer>
+          </div>
+        </section>
+      </div>
+
+      <div class="game-toast" id="game-toast" role="status" aria-live="polite" hidden></div>
+    </main>
+  </body>
+</html>
