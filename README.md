@@ -14,7 +14,7 @@ Then visit `http://localhost:8000`.
 
 ## Public launcher URL
 
-The public launcher is published through GitHub Pages at <https://jacobherringorsm.github.io/New-Client/>. Each push to `main` deploys the static site; the first deployment may take a few minutes.
+The public launcher URL will be <https://jacobherringorsm.github.io/New-Client/>. Enable GitHub Pages in the repository's **Settings → Pages**, choose **GitHub Actions** as the build source, and approve the initial workflow run if GitHub asks. After the first successful deployment, pushes to `main` update the site.
 
 ## Install and launch
 
