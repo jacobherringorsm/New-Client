@@ -12,6 +12,10 @@ python3 -m http.server 8000
 
 Then visit `http://localhost:8000`.
 
+## Public launcher URL
+
+The public launcher is published through GitHub Pages at <https://jacobherringorsm.github.io/New-Client/>. Each push to `main` deploys the static site; the first deployment may take a few minutes.
+
 ## Install and launch
 
 Use the Eaglercraft downloads link in the UI to get a standalone 26.2 `.html` client build you are authorized to use. Choose that HTML file or a ZIP containing exactly one HTML client once, then select **Launch 26.2 client**. The build is saved in this browser's IndexedDB and launches from the game view on later visits without selecting the archive again. It is not uploaded or copied into this repository. Only open client files from sources you trust, as HTML files can run browser scripts.
