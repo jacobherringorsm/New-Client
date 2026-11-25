@@ -5,7 +5,12 @@ const navItems = [...document.querySelectorAll("[data-panel]")];
 const pageTitle = document.querySelector("#current-page");
 const toast = document.querySelector("#toast");
 const fpsPreview = document.querySelector("#fps-preview");
+const clientFileInput = document.querySelector("#client-file");
+const chooseClientButton = document.querySelector("#choose-client");
+const launchClientLink = document.querySelector("#launch-client");
+const selectedFileStatus = document.querySelector("#selected-file");
 let toastTimer;
+let clientObjectUrl;
 
 function showPanel(name) {
   const panel = panels.get(name);
@@ -73,5 +78,39 @@ for (const input of document.querySelectorAll("[data-setting]")) {
 for (const button of document.querySelectorAll("[data-notice]")) {
   button.addEventListener("click", () => showNotice(button.dataset.notice));
 }
+
+chooseClientButton.addEventListener("click", () => clientFileInput.click());
+
+clientFileInput.addEventListener("change", () => {
+  const [file] = clientFileInput.files ?? [];
+  if (!file) return;
+
+  if (!/\.html?$/i.test(file.name)) {
+    clientFileInput.value = "";
+    selectedFileStatus.textContent = "Choose a standalone .html or .htm client file.";
+    return;
+  }
+
+  if (clientObjectUrl) URL.revokeObjectURL(clientObjectUrl);
+  clientObjectUrl = URL.createObjectURL(file);
+  launchClientLink.href = clientObjectUrl;
+  launchClientLink.hidden = false;
+  launchClientLink.setAttribute("aria-disabled", "false");
+  launchClientLink.removeAttribute("tabindex");
+  chooseClientButton.textContent = "Choose a different file";
+  selectedFileStatus.textContent = `${file.name} is ready. Launch it in a new tab.`;
+});
+
+launchClientLink.addEventListener("click", (event) => {
+  if (launchClientLink.getAttribute("aria-disabled") === "true") {
+    event.preventDefault();
+    return;
+  }
+  showNotice("The selected client is opening in a separate tab.");
+});
+
+window.addEventListener("pagehide", () => {
+  if (clientObjectUrl) URL.revokeObjectURL(clientObjectUrl);
+});
 
 showPanel("home");

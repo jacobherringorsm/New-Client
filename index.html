@@ -65,9 +65,17 @@
               <div class="eyebrow"><span class="eyebrow-line"></span> PERSONAL CLIENT CONFIGURATION</div>
               <h1 id="welcome-title">Your world.<br><span>Your interface.</span></h1>
               <p>A neon-inspired control center for a client built around your play style.</p>
-              <button class="button button-primary" type="button" data-notice="Game launch is not connected in this UI prototype.">
-                <span aria-hidden="true">▶</span> Launch client
-              </button>
+              <div class="launch-controls">
+                <input id="client-file" class="file-input" type="file" accept=".html,.htm,text/html" aria-label="Choose a standalone Eaglercraft client HTML file">
+                <button class="button button-primary" id="choose-client" type="button">
+                  <span aria-hidden="true">＋</span> Choose client file
+                </button>
+                <a class="button button-primary launch-link" id="launch-client" href="#" target="_blank" rel="noopener noreferrer" aria-disabled="true" tabindex="-1" hidden>
+                  <span aria-hidden="true">▶</span> Launch 26.2 client
+                </a>
+                <a class="download-link" href="https://eaglercraft.com/downloads" target="_blank" rel="noopener noreferrer">Get the client from Eaglercraft downloads ↗</a>
+              </div>
+              <p class="selected-file" id="selected-file" role="status" aria-live="polite">Choose a standalone 26.2 HTML build. It stays on your device; only open a client file you trust.</p>
             </div>
             <div class="hero-art" aria-hidden="true">
               <div class="orbit orbit-one"></div>
@@ -173,7 +181,7 @@
           </div>
           <div class="settings-card about-card">
             <span class="about-symbol" aria-hidden="true">N</span>
-            <div><h2>Independent UI concept</h2><p>This page does not include or modify Eaglercraft, Minecraft, or any game assets. A real in-client version needs a documented add-on interface and source you are authorized to change.</p></div>
+            <div><h2>Independent UI concept</h2><p>The selected standalone client opens in a separate tab; this prototype does not modify its menus or gameplay. It includes no Eaglercraft, Minecraft, or game assets. In-client changes need a documented add-on interface and source you are authorized to change.</p></div>
           </div>
         </section>
 
