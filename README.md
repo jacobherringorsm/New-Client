@@ -14,9 +14,9 @@ Then visit `http://localhost:8000`.
 
 ## Launch a client you already have
 
-Use the Eaglercraft downloads link in the UI to get a standalone 26.2 `.html` client build you are authorized to use. Back in the prototype, choose that HTML file and select **Launch 26.2 client**. The browser opens the selected local file in a separate tab; the file is not uploaded or copied into this repository. Only open client files from sources you trust, as HTML files can run browser scripts.
+Use the Eaglercraft downloads link in the UI to get a standalone 26.2 `.html` client build you are authorized to use. Back in the prototype, choose that HTML file or a ZIP containing exactly one HTML client and select **Launch 26.2 client**. The browser opens the selected local file in a separate tab; the file is not uploaded or copied into this repository. Only open client files from sources you trust, as HTML files can run browser scripts.
 
-The local launcher only supports self-contained HTML builds. It does not load ZIP bundles, connect to multiplayer servers, or inject the prototype's menus into the game.
+The local launcher extracts ZIPs in your browser and supports stored or deflate-compressed HTML entries up to 128 MiB. It does not load multi-file bundles, connect to multiplayer servers, or inject the prototype's menus into the game.
 
 ## Scope
 
