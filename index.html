@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#090d16">
+    <title>Neon Client UI</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar" aria-label="Client navigation">
+        <a class="brand" href="#home" data-go="home" aria-label="Neon Client home">
+          <span class="brand-mark" aria-hidden="true">N</span>
+          <span class="brand-copy">
+            <strong>NEON</strong>
+            <small>CLIENT UI</small>
+          </span>
+        </a>
+
+        <div class="nav-label">WORKSPACE</div>
+        <nav class="navigation">
+          <button class="nav-item is-active" type="button" data-panel="home" aria-current="page">
+            <span class="nav-icon" aria-hidden="true">⌂</span>
+            <span>Overview</span>
+          </button>
+          <button class="nav-item" type="button" data-panel="appearance">
+            <span class="nav-icon" aria-hidden="true">◈</span>
+            <span>Appearance</span>
+          </button>
+          <button class="nav-item" type="button" data-panel="quality">
+            <span class="nav-icon" aria-hidden="true">✳</span>
+            <span>Quality of life</span>
+          </button>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <div class="connection-card">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span>
+              <strong>Prototype mode</strong>
+              <small>Not connected to a game</small>
+            </span>
+          </div>
+          <button class="nav-item" type="button" data-panel="about">
+            <span class="nav-icon" aria-hidden="true">ⓘ</span>
+            <span>About</span>
+          </button>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="breadcrumb"><span>CLIENT</span><span class="slash">/</span><strong id="current-page">Overview</strong></div>
+          <div class="topbar-status">
+            <span class="fps-preview" id="fps-preview" hidden>144 <small>FPS</small></span>
+            <div class="build-pill"><span class="build-dot" aria-hidden="true"></span> UI CONCEPT <span class="build-version">26.2</span></div>
+          </div>
+        </header>
+
+        <section class="panel is-visible" id="panel-home" aria-labelledby="welcome-title">
+          <div class="hero">
+            <div class="hero-copy">
+              <div class="eyebrow"><span class="eyebrow-line"></span> PERSONAL CLIENT CONFIGURATION</div>
+              <h1 id="welcome-title">Your world.<br><span>Your interface.</span></h1>
+              <p>A neon-inspired control center for a client built around your play style.</p>
+              <button class="button button-primary" type="button" data-notice="Game launch is not connected in this UI prototype.">
+                <span aria-hidden="true">▶</span> Launch client
+              </button>
+            </div>
+            <div class="hero-art" aria-hidden="true">
+              <div class="orbit orbit-one"></div>
+              <div class="orbit orbit-two"></div>
+              <div class="core"><span>N</span></div>
+              <div class="art-caption">SYSTEM<br>READY</div>
+            </div>
+            <div class="hero-grid" aria-hidden="true"></div>
+          </div>
+
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow">QUICK ACCESS</div>
+              <h2>Make it yours</h2>
+            </div>
+            <span class="subtle">Choose a panel to customize</span>
+          </div>
+
+          <div class="quick-grid">
+            <button class="quick-card" type="button" data-go="appearance">
+              <span class="quick-icon icon-cyan" aria-hidden="true">◈</span>
+              <span class="quick-content"><strong>Appearance</strong><small>Color and interface style</small></span>
+              <span class="card-arrow" aria-hidden="true">↗</span>
+            </button>
+            <button class="quick-card" type="button" data-go="quality">
+              <span class="quick-icon icon-violet" aria-hidden="true">✳</span>
+              <span class="quick-content"><strong>Quality of life</strong><small>Personalize your HUD</small></span>
+              <span class="card-arrow" aria-hidden="true">↗</span>
+            </button>
+          </div>
+
+          <footer class="footer-note"><span class="footer-mark" aria-hidden="true">✦</span> An original interface concept — no game files or assets included.</footer>
+        </section>
+
+        <section class="panel" id="panel-appearance" aria-labelledby="appearance-title" hidden>
+          <div class="page-heading">
+            <div class="eyebrow"><span class="eyebrow-line"></span> MAKE IT YOURS</div>
+            <h1 id="appearance-title">Appearance</h1>
+            <p>Set the accent that lights up your interface.</p>
+          </div>
+          <div class="settings-card">
+            <div class="card-heading">
+              <div><h2>Accent color</h2><p>Choose a signal color for highlights and controls.</p></div>
+              <span class="tag">THEME</span>
+            </div>
+            <div class="accent-options" role="group" aria-label="Accent color">
+              <button class="accent-choice is-selected" type="button" data-accent="cyan" aria-pressed="true">
+                <span class="swatch swatch-cyan" aria-hidden="true"></span><span>Cyan</span><span class="choice-check" aria-hidden="true">✓</span>
+              </button>
+              <button class="accent-choice" type="button" data-accent="violet" aria-pressed="false">
+                <span class="swatch swatch-violet" aria-hidden="true"></span><span>Violet</span><span class="choice-check" aria-hidden="true">✓</span>
+              </button>
+              <button class="accent-choice" type="button" data-accent="amber" aria-pressed="false">
+                <span class="swatch swatch-amber" aria-hidden="true"></span><span>Amber</span><span class="choice-check" aria-hidden="true">✓</span>
+              </button>
+            </div>
+          </div>
+          <div class="preview-card">
+            <div>
+              <span class="tag">LIVE PREVIEW</span>
+              <h2>Stay in your element.</h2>
+              <p>Accent selection previews across buttons, status lights, and panel details.</p>
+            </div>
+            <div class="preview-chip"><span class="status-dot" aria-hidden="true"></span> ONLINE</div>
+          </div>
+        </section>
+
+        <section class="panel" id="panel-quality" aria-labelledby="quality-title" hidden>
+          <div class="page-heading">
+            <div class="eyebrow"><span class="eyebrow-line"></span> TUNE YOUR SETUP</div>
+            <h1 id="quality-title">Quality of life</h1>
+            <p>Small interface preferences for a more comfortable session.</p>
+          </div>
+          <div class="settings-card settings-list">
+            <div class="card-heading">
+              <div><h2>Interface preferences</h2><p>These controls are a UI demo and do not affect gameplay.</p></div>
+              <span class="tag">3 OPTIONS</span>
+            </div>
+            <label class="setting-row">
+              <span class="setting-copy"><strong>Compact HUD</strong><small>Preview a tighter, less distracting layout.</small></span>
+              <input class="switch-input" type="checkbox" data-setting="compact-hud" aria-label="Compact HUD">
+              <span class="switch" aria-hidden="true"></span>
+            </label>
+            <label class="setting-row">
+              <span class="setting-copy"><strong>Show FPS counter</strong><small>Keep a performance readout visible in the interface.</small></span>
+              <input class="switch-input" type="checkbox" data-setting="fps-counter" aria-label="Show FPS counter">
+              <span class="switch" aria-hidden="true"></span>
+            </label>
+            <label class="setting-row">
+              <span class="setting-copy"><strong>Reduce motion</strong><small>Use calmer transitions between menu panels.</small></span>
+              <input class="switch-input" type="checkbox" data-setting="reduced-motion" aria-label="Reduce motion">
+              <span class="switch" aria-hidden="true"></span>
+            </label>
+          </div>
+          <p class="notice-line"><span aria-hidden="true">ⓘ</span> Preferences are temporary in this prototype and reset when the page reloads.</p>
+        </section>
+
+        <section class="panel" id="panel-about" aria-labelledby="about-title" hidden>
+          <div class="page-heading">
+            <div class="eyebrow"><span class="eyebrow-line"></span> PROJECT NOTES</div>
+            <h1 id="about-title">About this prototype</h1>
+            <p>A first look at an original dark-neon interface for a future 26.2 client customization.</p>
+          </div>
+          <div class="settings-card about-card">
+            <span class="about-symbol" aria-hidden="true">N</span>
+            <div><h2>Independent UI concept</h2><p>This page does not include or modify Eaglercraft, Minecraft, or any game assets. A real in-client version needs a documented add-on interface and source you are authorized to change.</p></div>
+          </div>
+        </section>
+
+        <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+      </main>
+    </div>
+  </body>
+</html>
